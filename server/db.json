@@ -1,0 +1,11 @@
+{
+    "news": [
+        {
+            "id": "1",
+            "title": "Post Title",
+            "category": "category",
+            "publicationDate": "PublicationDate",
+            "author": "Author"
+        }
+    ]
+}
