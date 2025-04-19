@@ -2,10 +2,9 @@ import "./App.css";
 import { Route, Routes } from "react-router";
 import MainPage from "./pages/MainPage";
 import Header from "./components/Header";
+import PostPage from "./pages/PostPage";
 import ROUTES from "./constants/routes";
-import NewsPage from "./pages/NewsPage";
-import PodcastsPage from "./pages/PodcastsPage";
-import ResoursesPage from "./pages/ResoursesPage";
+import AuthPage from "./pages/AuthPage";
 
 function App() {
   return (
@@ -13,13 +12,13 @@ function App() {
       <Header />
       <main className="mt-[102px]">
         <Routes>
-          <Route index Component={MainPage} />
-          <Route path={ROUTES.news}>
-            <Route index Component={NewsPage} />
-            <Route path={":id"} />
+          <Route path={ROUTES.main}>
+            <Route index Component={MainPage} />
+            <Route path=":postId" element={<PostPage />} />
           </Route>
-          <Route path={ROUTES.podcasts} Component={PodcastsPage} />
-          <Route path={ROUTES.resourses} Component={ResoursesPage} />
+          <Route path={ROUTES.auth}>
+            <Route index Component={AuthPage} />
+          </Route>
         </Routes>
       </main>
     </>

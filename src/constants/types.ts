@@ -1,9 +1,10 @@
-export type PostType = {
+export interface PostType {
   id: string;
   title: string;
-  category: string;
-  publicationDate: string;
+  image: string;
+  description: string;
   author: string;
-};
+  published_at: string;
+}
 
 export type PostsListType = Array<PostType>;

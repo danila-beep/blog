@@ -1,17 +1,38 @@
 import { FC } from "react";
+import { PostType } from "../constants/types";
 import { Link } from "react-router";
 
-type PostCardProps = {
-  id: number;
-  title: string;
-};
+interface PostCardProps extends PostType {
+  size?: "s" | "m" | "l";
+}
 
-const PostCard: FC<PostCardProps> = ({ id, title }) => {
-  console.log(123);
+const PostCard: FC<PostCardProps> = ({ id, title, description }) => {
   return (
-    <div>
-      <p>{title}</p>
-      <Link to={String(id)}>Login again</Link>
+    <div
+      className="
+      relative
+    "
+    >
+      <Link
+        to={id}
+        className="
+        absolute inset-0
+      "
+      ></Link>
+      <p
+        className="
+        text-4xl font-medium font-serif pb-[20px]
+      "
+      >
+        {title}
+      </p>
+      <p
+        className="
+        text-1xl font-serif
+      "
+      >
+        {description}
+      </p>
     </div>
   );
 };

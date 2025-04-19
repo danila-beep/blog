@@ -2,7 +2,8 @@
 
 html,
 body {
-  background-color: #141414;
+  background-color: #f9f4ec;
+  overflow-x: hidden;
 }
 
 @theme {
