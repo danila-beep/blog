@@ -1,19 +1,36 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { API_BASE_URL, API_ENDPOINTS } from "../constants/api_endpoints";
-import { PostsListType } from "../constants/types";
+import { useAppDispatch, useAppSelector } from "../shared/lib/hooks";
+import { setPosts } from "../store/slices/postsSlice";
 import PostCard from "../components/PostCard";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useLocation, useNavigate } from "react-router";
+import ROUTES from "../constants/routes";
 
 function MainPage() {
-  const [postsData, setPostsData] = useState<PostsListType>([]);
+  const dispatch = useAppDispatch();
+  const postsState = useAppSelector((state) => state.postsState);
+  const auth = getAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user);
+    } else {
+      console.log(user, 123);
+      navigate(ROUTES.auth, { state: { background: location } });
+    }
+  });
 
   useEffect(() => {
     const url = `${API_BASE_URL}${API_ENDPOINTS.posts}`;
     axios.get(url).then((res) => {
-      const allPersons = res.data;
-      setPostsData(allPersons);
+      const postsData = res.data;
+      dispatch(setPosts(postsData));
     });
-  }, [setPostsData]);
+  }, []);
 
   return (
     <section
@@ -27,14 +44,12 @@ function MainPage() {
 
       <ul
         className="
-        flex flex-col flex-wrap
-        h-full max-h-[50vh]
-        overflow-x-auto
+        flex flex-col flex-wrap overflow-x-auto max-h-[600px] justify-start items-start
       "
       >
-        {postsData.map((post) => {
+        {postsState.map((post) => {
           return (
-            <li key={post.id}>
+            <li key={post.id} className="max-w-[210px]">
               <PostCard {...post} />
             </li>
           );

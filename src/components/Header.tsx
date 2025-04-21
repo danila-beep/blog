@@ -1,8 +1,11 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import Toggle from "./Toggle";
 import ROUTES from "../constants/routes";
+import Button from "../shared/interface/atoms/Button";
+import { getAuth, signOut } from "firebase/auth";
 
 const Header = () => {
+  const location = useLocation();
   return (
     <header
       className="
@@ -25,6 +28,8 @@ const Header = () => {
 
       <Link
         to={ROUTES.auth}
+        state={{ background: location }}
+        viewTransition
         className="
         text-end px-[24px] py-[12px] bg-black text-[#f9f4ec] rounded-2xl cursor-pointer border border-transparent transition-all
         hover:text-black hover:bg-[#f9f4ec] hover:border-black
@@ -32,6 +37,13 @@ const Header = () => {
       >
         Auth
       </Link>
+      <Button
+        onClick={() => {
+          signOut(getAuth());
+        }}
+      >
+        SignOut
+      </Button>
       <Toggle />
     </header>
   );

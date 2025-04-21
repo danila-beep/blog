@@ -32,33 +32,18 @@ const Input = ({ label, changeRelativeHandler, ...props }: InputProps) => {
     }
   };
 
-  //   useEffect(() => {
-  //     changeHandler(props.name, inputValue);
-  //   }, [inputValue]);
-
-  const labelAnimationConfig = {
-    m: {
-      yOffset: "transform-[translateY(-205%)]",
-      fontSize: "text-[14px]",
-    },
-    lg: {
-      yOffset: "transform-[translateY(-230%)]",
-      fontSize: "text-[16px]",
-    },
-  };
-
   const labelStyles = `
     absolute text-[16px] leading-[110%] text-[#000000] bg-[#f9f4ec] top-[50%] left-[12px] transform-[translateY(-50%)] transition-all
-    group-hover:${labelAnimationConfig.m.yOffset} group-hover:${labelAnimationConfig.m.fontSize}
-    group-focus:${labelAnimationConfig.m.yOffset} group-focus:${labelAnimationConfig.m.fontSize}
-    peer-focus:${labelAnimationConfig.m.yOffset} peer-focus:${labelAnimationConfig.m.fontSize}
-    group-data-[empty=false]:${labelAnimationConfig.m.yOffset} group-data-[empty=false]:${labelAnimationConfig.m.fontSize}
+    group-hover:transform-[translateY(-31px)] group-hover:text-[14px]
+    group-focus:transform-[translateY(-31px)] group-focus:text-[14px]
+    peer-focus:transform-[translateY(-31px)] peer-focus:text-[14px]
+    group-data-[empty=false]:transform-[translateY(-31px)] group-data-[empty=false]:text-[14px]
 
     lg:text-[20px] lg:left-[18px]
-    lg:group-hover:${labelAnimationConfig.lg.yOffset} lg:group-hover:${labelAnimationConfig.lg.fontSize}
-    lg:group-focus:${labelAnimationConfig.lg.yOffset} lg:group-focus:${labelAnimationConfig.lg.fontSize}
-    lg:peer-focus:${labelAnimationConfig.lg.yOffset} lg:peer-focus:${labelAnimationConfig.lg.fontSize}
-    lg:group-data-[empty=false]:${labelAnimationConfig.lg.yOffset} lg:group-data-[empty=false]:${labelAnimationConfig.lg.fontSize}
+    lg:group-hover:transform-[translateY(-39px)] lg:group-hover:"text-[16px]"
+    lg:group-focus:transform-[translateY(-39px)] lg:group-focus:"text-[16px]"
+    lg:peer-focus:transform-[translateY(-39px)] lg:peer-focus:"text-[16px]"
+    lg:group-data-[empty=false]:transform-[translateY(-39px)] lg:group-data-[empty=false]:"text-[16px]"
   `;
 
   return (

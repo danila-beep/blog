@@ -2,6 +2,8 @@ import { useState } from "react";
 import Input from "../atoms/Input";
 import FormGroup from "../molecules/FormGroup";
 import { Auth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router";
+import ROUTES from "../../../constants/routes";
 
 interface SignUpDataType {
   email: string;
@@ -17,6 +19,7 @@ const SignUpForm = ({ ...authService }: SignUpFormPropsType) => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (name: string, value: string) => {
     setSignUpData({
@@ -33,7 +36,7 @@ const SignUpForm = ({ ...authService }: SignUpFormPropsType) => {
     )
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        navigate(ROUTES.main);
       })
       .catch((e) => {
         console.log(e.message);
